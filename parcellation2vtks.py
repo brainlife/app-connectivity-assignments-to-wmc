@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-#!/usr/bin/env python
-
 import vtk
 import sys
 import os
@@ -14,7 +12,8 @@ if not os.path.exists("wmc/surfaces"):
 #lut = pd.read_csv('FreeSurferColorLUT.csv')
 with open('config.json','r') as f:
     config = json.load(f)
-labels = config['labels']
+with open(config['labels'],'r') as lab_f:
+    labels = json.load(lab_f)
 img_path = config['parcellation']
 
 # import the binary nifti image
