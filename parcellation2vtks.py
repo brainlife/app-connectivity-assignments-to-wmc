@@ -13,7 +13,8 @@ if not os.path.exists("wmc/surfaces"):
 
 #lut = pd.read_csv('FreeSurferColorLUT.csv')
 with open('config.json','r') as f:
-    labels = json.load(f['labels'])
+    config = json.load(f)
+labels = config['labels']
 img_path = config['parcellation']
 
 # import the binary nifti image
