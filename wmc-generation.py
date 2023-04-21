@@ -15,7 +15,12 @@ def load_assignments(index_file,name_file):
 
 def load_labels(label_file):
 
-    return pd.read_json(label_file,orient='records')
+    df = pd.read_json(label_file,orient='records')
+    if 'color' not in df.keys().tolist():
+        df['color'] = [ {'r': np.random.randint(0,255), 'g': np.random.randint(0,255), 'b': np.random.randint(0,255)} for f in df['label'] ]
+    df.to_json('labels.json',orient='records')
+    
+    return df
 
 def update_index(df):
 
