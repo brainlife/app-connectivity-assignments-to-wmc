@@ -41,7 +41,7 @@ for label in labels:
     if not label_id in unique:
         continue
 
-    surf_name=label['label']+'.'+label['name'].replace('h.','h_')+'.vtk'
+    surf_name=label['label']+'.'+label['name'].replace('h.','h-').replace('_','-')+'.vtk'
     label["filename"] = surf_name
     print(surf_name)
 
