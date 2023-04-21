@@ -12,7 +12,7 @@ if not os.path.exists("wmc/surfaces"):
 #lut = pd.read_csv('FreeSurferColorLUT.csv')
 with open('config.json','r') as f:
     config = json.load(f)
-with open('label.json','r') as lab_f:
+with open('labels.json','r') as lab_f:
     labels = json.load(lab_f)
 img_path = config['parcellation']
 
