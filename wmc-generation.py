@@ -17,7 +17,7 @@ def load_labels(label_file):
 
     df = pd.read_json(label_file,orient='records')
     if 'color' not in df.keys().tolist():
-        df['color'] = [ {'r': np.random.randint(0,255), 'g': np.random.randint(0,255), 'b': np.random.randint(0,255)} for f in df['label'] ]
+        df['color'] = [ {'r': np.random.randint(0,255), 'g': np.random.randint(0,255), 'b': np.random.randint(0,255)} for f in df['voxel_value'] ]
     df.to_json('labels.json',orient='records')
     
     return df
@@ -36,7 +36,7 @@ def update_pair_names(df,labels,unique_pairs,unique_indices):
     track_names = []
     
     for i in unique_pairs:
-        track_names.append('track_'+labels.loc[labels['label'] == int(i.split('_')[0])]['name'].values[0]+'_to_'+labels.loc[labels['label'] == int(i.split('_')[1])]['name'].values[0])
+        track_names.append('track_'+labels.loc[labels['voxel_value'] == int(i.split('_')[0])]['name'].values[0]+'_to_'+labels.loc[labels['voxel_value'] == int(i.split('_')[1])]['name'].values[0])
     names_index_dict = dict(zip(unique_indices,track_names))
     
     df['tract_name'] = df['stream_index'].map(names_index_dict)

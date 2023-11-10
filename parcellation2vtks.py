@@ -33,7 +33,7 @@ for i in range(0, vtk_data.GetSize()):
 index=[]
 
 for label in labels:
-    label_id=int(label["label"])
+    label_id=int(label["voxel_value"])
 
     #only handle some surfaces
     #if label_id < 1000 or label_id > 2036:
@@ -41,7 +41,7 @@ for label in labels:
     if not label_id in unique:
         continue
 
-    surf_name=str(label['label'])+'.'+label['name'].replace('h.','h-').replace('_','-')+'.vtk'
+    surf_name=str(label['voxel_value'])+'.'+label['name'].replace('h.','h-').replace('_','-')+'.vtk'
     label["filename"] = surf_name
     print(surf_name)
 
