@@ -10,9 +10,9 @@
   <a href="https://github.com/brainlife/app-connectivity-assignments-to-wmc/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-lightgrey.svg" alt="MIT license"></a>
 </p>
 
-> 📍 **This branch, `pyafq-0.4.1_v1.0`, is the brainlife.io App Convert assignments from structural connectivity to wmc datatype** ([doi:10.25663/brainlife.app.766](https://doi.org/10.25663/brainlife.app.766)).
+> **This branch, `pyafq-0.4.1_v1.0`, is the brainlife.io App Convert assignments from structural connectivity to wmc datatype** ([doi:10.25663/brainlife.app.766](https://doi.org/10.25663/brainlife.app.766)).
 
-## 🧠 At a glance
+## At a glance
 
 <!-- brainlife-app:begin (generated from the App manifest; edit the manifest, not this block) -->
 
@@ -22,13 +22,13 @@ Reads the per-streamline node-pair assignments and the parcellation labels, name
 
 | | |
 |---|---|
-| 📥 **Inputs** | `neuro/labels` · `neuro/track/tck` · `neuro/dwi` · `neuro/parcellation/volume` |
-| 📤 **Outputs** | `neuro/wmc` |
-| 🐳 **Container** | `brainlife/pyafq:0.4.1` |
-| ⚙️ **Resources** | 8 CPUs · 1 h walltime |
-| 🔗 **Run it** | [doi.org/10.25663/brainlife.app.766](https://doi.org/10.25663/brainlife.app.766) |
+| **Inputs** | `neuro/labels` · `neuro/track/tck` · `neuro/dwi` · `neuro/parcellation/volume` |
+| **Outputs** | `neuro/wmc` |
+| **Container** | `brainlife/pyafq:0.4.1` |
+| **Resources** | 8 CPUs · 1 h walltime |
+| **Run it** | [doi.org/10.25663/brainlife.app.766](https://doi.org/10.25663/brainlife.app.766) |
 
-#### 📥 Inputs
+#### Inputs
 
 | Input | Datatype | Required | Description |
 |---|---|---|---|
@@ -37,7 +37,7 @@ Reads the per-streamline node-pair assignments and the parcellation labels, name
 | `dwi` | `neuro/dwi` | yes | DWI used as the reference space when loading the tractogram. |
 | `parcellation` | `neuro/parcellation/volume` | yes | Parcellation (with label.json) whose regions define the connectome nodes. |
 
-#### 📤 Outputs
+#### Outputs
 
 | Output | Datatype | Description |
 |---|---|---|
@@ -45,11 +45,11 @@ Reads the per-streamline node-pair assignments and the parcellation labels, name
 
 <!-- brainlife-app:end -->
 
-## 🚀 Running the App
+## Running the App
 
 A structural connectivity App assigns each streamline to the pair of parcellation regions it connects. This App reads those assignments and the parcellation labels, names each pair `track_<region>_to_<region>` (region order normalised so that A→B and B→A are one tract), drops unassigned (`not-classified`) streamlines, and builds a wmc classification and per-tract files from the tractogram. It also meshes every parcellation region so the tracts can be viewed with their endpoints in the brainlife.io visualiser.
 
-### ☁️ On brainlife.io
+### On brainlife.io
 
 Open the App at [doi.org/10.25663/brainlife.app.766](https://doi.org/10.25663/brainlife.app.766) and choose, from the same connectivity run:
 
@@ -60,7 +60,7 @@ Open the App at [doi.org/10.25663/brainlife.app.766](https://doi.org/10.25663/br
 
 Press **Execute**. The result is archived to your project as a `neuro/wmc` dataset that any App taking a wmc input (tract statistics, conversions, visualisation) can use.
 
-### 💻 Locally
+### Locally
 
 You need [Singularity/Apptainer](https://apptainer.org/). The App runs `wmc-generation.py` in `brainlife/pyafq:0.4.1` (DIPY, nibabel, pandas, SciPy) and `parcellation2vtks.py` in `brainlife/pythonvtk:1.1` (VTK).
 
@@ -86,7 +86,7 @@ You need [Singularity/Apptainer](https://apptainer.org/). The App runs `wmc-gene
    ./main
    ```
 
-## 📦 Outputs
+## Outputs
 
 ```text
 wmc/
@@ -101,12 +101,12 @@ wmc/
 
 Tract and region colours are assigned at random when the parcellation labels have none.
 
-## 🩺 Troubleshooting
+## Troubleshooting
 
 - **`failed`** (no `wmc/classification.mat`): the assignments, tractogram and parcellation must come from the same connectivity run; a pair label missing from `label.json` or a streamline count that does not match the tractogram stops the conversion.
 - **Surface generation is slow**: listing the parcellation's unique values with VTK is slow on large or high-resolution parcellations; this step is skipped on re-runs once `wmc/surfaces/index.json` exists.
 
-## 📚 Citing
+## Citing
 
 > [!TIP]
 > If you use this App in your work, please cite the App, the software it builds on and brainlife.io (below). GitHub's **Cite this repository** button gives the App citation in APA and BibTeX.
@@ -117,11 +117,11 @@ Tract and region colours are assigned at random when the parcellation labels hav
 - Hayashi S, Caron BA, Heinsfeld AS, et al. brainlife.io: a decentralized and open-source cloud platform to support neuroscience research. *Nature Methods* 21:809–813 (2024). [doi:10.1038/s41592-024-02237-2](https://doi.org/10.1038/s41592-024-02237-2)
 - Avesani P, McPherson B, Hayashi S, et al. The open diffusion data derivatives, brain data upcycling via integrated publishing of derivatives and reproducible open cloud services. *Scientific Data* 6:69 (2019). [doi:10.1038/s41597-019-0073-y](https://doi.org/10.1038/s41597-019-0073-y)
 
-## 👥 Authors
+## Authors
 
 - Brad Caron
 
-## 💰 Funding
+## Funding
 
 [![Wellcome-226486/Z/22/Z](https://img.shields.io/badge/Wellcome-226486%2FZ%2F22%2FZ-purple.svg)](https://wellcome.org/)
 [![NIH-NINDS-U24NS140384](https://img.shields.io/badge/NIH_NINDS-U24NS140384-green.svg)](https://reporter.nih.gov/project-details/11261037)
@@ -140,6 +140,6 @@ Tract and region colours are assigned at random when the parcellation labels hav
 
 <sub>brainlife.io is publicly funded, and acknowledging that support helps keep it running. This App was developed with support from Wellcome, the U.S. National Institutes of Health (including the BRAIN Initiative BRAIN CONNECTS program: The Axonal Projectome EXchange, U24NS140384, and the Center for Mesoscale Connectomics, UM1NS132207) and the U.S. National Science Foundation.</sub>
 
-## ⚖️ License
+## License
 
 [MIT](https://github.com/brainlife/app-connectivity-assignments-to-wmc/blob/main/LICENSE).
